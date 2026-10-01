@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HSO Calculator</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#1d2421;--mut:#68736e;--line:#dde2dd;--acc:#1f6f5b;--acc2:#e8f2ee;--hi:#fff3c4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141816;--card:#1c221f;--ink:#e6ebe8;--mut:#93a09a;--line:#2e3833;--acc:#5fc3a5;--acc2:#1f2f2a;--hi:#4a4219}}
+:root[data-theme="dark"]{--bg:#141816;--card:#1c221f;--ink:#e6ebe8;--mut:#93a09a;--line:#2e3833;--acc:#5fc3a5;--acc2:#1f2f2a;--hi:#4a4219}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 12px}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}
+nav button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:8px;font:inherit;cursor:pointer}
+nav button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+section{display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:8px}
+section.on{display:block}
+.sc{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap}
+th{background:var(--acc2);position:sticky;top:0}
+td.g{font-weight:600}
+.hl,tr.hl td{background:var(--hi)}
+label{display:block;font-size:13px;color:var(--mut);margin-bottom:4px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 10px;width:100%;max-width:220px}
+td input{max-width:130px;padding:4px 8px}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:end;margin-bottom:12px}
+.out{font-size:20px;font-weight:600;color:var(--acc)}
+.box{border:1px solid var(--line);border-radius:8px;padding:12px;min-width:240px;flex:1}
+.mut{color:var(--mut);font-size:13px}
+</style></head><body><main>
+<h1>HSO – Bảng chỉ số &amp; công cụ tính</h1>
+<nav role="tablist" id="nav"></nav>
+<section id="s0"><div class="row"><div><label for="lv">Highlight level</label><select id="lv"></select></div><div><label for="gr">Highlight đồ</label><select id="gr"></select></div></div><p class="mut">Click a row or a level number to highlight it (click again to clear).</p><div class="sc"><table id="t0"></table></div></section>
+<section id="s1"><div class="row"><div><label for="lv1">Highlight level</label><select id="lv1"></select></div><div><label for="gr1">Highlight vũ khí</label><select id="gr1"></select></div></div><p class="mut">Click a row or a level number to highlight it (click again to clear).</p><div class="sc"><table id="t1"></table></div></section>
+<section id="s2"><div class="row"><div><label for="base">Chỉ số vũ khí gốc (+0)</label><input id="base" type="number" step="any"></div></div>
+<div class="sc"><table id="t2"></table></div><p class="mut">Cột “Đo được”: nhập chỉ số thực tế của vũ khí ở mức + đó, “Base” sẽ tính ngược lại (đo được ÷ hệ số).</p></section>
+<section id="s3"><div class="row">
+<div class="box"><label for="h">Hệ số</label><input id="h" type="number" step="any"><p class="mut">Dùng chung cho cả hai phép tính.</p></div></div>
+<div class="row"><div class="box"><label for="i1">Input</label><input id="i1" type="number" step="any" value="100000">
+<p class="mut">Output = Hệ số × Input</p><div class="out" id="o1"></div><p class="mut">Output (-5%)</p><div class="out" id="o2"></div></div>
+<div class="box"><label for="i2">Input</label><input id="i2" type="number" step="any" value="40000000">
+<p class="mut">Output = làm tròn lên nghìn của (Input + 5%) ÷ Hệ số</p><div class="out" id="o3"></div></div></div></section>
+</main><script>
+const D={"levels": ["5", "15", "25", "35", "45", "55", "65", "75", "85", "95", "105", "115", "125", "135"], "rows": [["MŨ", "VẬT LÝ / PS - XT", "12-8-2", "15-10-2", "18-12-2", "21-14-2", "25-16-3", "28-18-3", "31-20-3", "34-22-4", "38-24-4", "41-26-4", "44-28-5", "48-30-5.4", "51-32-5.6", "54-33-5"], ["MŨ", "CB - ST", "11-7-2", "13-9-2", "16-11-2", "19-13-2", "23-15-3", "26-17-3", "29-19-3", "32-21-4", "36-23-4", "39-25-4", "42-27-5", "45-29-5.4", "48-31-5.6", "51-33-5"], ["ÁO", "PS - XT", "3-7-10", "5-8-12", "7-8-14", "9-9-16", "12-10-18", "14-10-21", "16-10-23", "18-11-25", "21-11-27", "25-12-29", "28-12-32", "31-13-33", "33-13-35", "35-14-37"], ["ÁO", "CB - ST", "3-6-10", "5-7-11", "7-7-13", "9-8-15", "12-9-17", "14-9-20", "16-9-21", "18-10-23", "21-10-25", "25-11-27", "28-11-30", "33-12-31", "35-12-33", "37-15-35"], ["VÁY", "PS - XT", "5-18-2", "6-20-3", "6-23-3", "7-25-4", "7-28-4", "8-32-5", "8-34-5", "9-37-6", "9-39-6", "10-42-7", "10-46-7", "11-48-8", "11-51-8", "12-53-9"], ["QUẦN", "CB - ST", "4-17-2", "5-19-3", "6-22-3", "6-24-4", "6-27-4", "7-30-5", "7-33-5", "8-35-6", "8-38-6", "9-40-7", "9-44-7", "10-46-8", "10-49-8", "11-51-9"], ["GĂNG SÁT THƯƠNG", "VẬT LÝ", "12-7-7", "15-10-10", "18-12-12", "21-14-14", "25-16-16", "28-18-18", "31-20-20", "34-21-21", "38-23-23", "41-25-25", "44-28-28", "48-29-29", "51-31-31", "54-33-33"], ["GĂNG SÁT THƯƠNG", "PS - XT", "12-2-2", "15-3-2", "18-3-2", "21-4-2", "25-4-3", "28-5-3", "31-5-3", "34-6-4", "38-6-4", "41-7-4", "44-7-5", "48-8-5.4", "51-8-5.6", "54-9-5"], ["GĂNG SÁT THƯƠNG", "CB - ST", "11-2-2", "13-3-2", "16-3-2", "19-4-2", "23-4-3", "26-5-3", "29-5-3", "32-6-4", "36-6-4", "39-7-4", "42-7-5", "45-8-5.4", "48-8-5.6", "51-9-5"], ["GĂNG + DÂY CHUYỀN 4 DÒNG", "/", "10x4", "11x4", "13x4", "15x4", "19x4", "20x4", "22x4", "23x4", "25x4", "27x4", "30x4", "/", "/", "/"], ["DÂY CHUYỀN SÁT THƯƠNG", "/", "19-3", "21-3", "23-3", "27-3", "31-3", "33-4", "36-4", "38-5", "41-5", "44-5", "48-6", "50-6.5", "53-6.75", "56-6.8"], ["DÂY CHUYỀN HP MP", "/", "14", "16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40"], ["GIÀY + GĂNG HỒI", "/", "12-12 / 2-2", "14-14 / 3-3", "16-16 / 3-3", "18-18 / 4-4", "20-20 / 4-4", "22-22 / 5-5", "24-24 / 5-5", "26-26 / 6-6", "28-28 / 6-6", "30-30 / 7-7", "32-32 / 7-7", "34-34 / 8-8", "36-36 / 8-8", "38-38 / 9-9"], ["GIÀY + GĂNG THỦ", "/", "11-9-9", "13-10-10", "16-12-12", "19-14-14", "23-16-16", "26-18-18", "29-20-20", "32-21-21", "36-23-23", "39-25-25", "42-28-28", "45-29-29", "48-31-31", "51-33-33"], ["NHẪN", "PS - XT / CB - ST", "11-11-2", "13-12-2", "16-14-2", "19-16-2", "23-18-3", "26-21-3", "29-23-3", "32-25-4", "36-27-4", "39-29-4", "42-32-5", "45-33-5.4", "48-35-5.6", "51-37-5"], ["NHẪN", "VẬT LÝ", "11-6-6", "13-7-7", "16-9-9", "19-10-10", "23-12-12", "26-14-14", "29-15-15", "32-16-16", "36-18-18", "39-20-20", "42-22-22", "45-23-23", "48-24-24", "51-26-26"], ["NHẪN", "THỦ", "11-7-2", "13-9-3", "16-11-3", "19-13-4", "23-15-4", "26-17-5", "29-19-5", "32-21-6", "36-23-6", "39-25-7", "42-27-7", "45-29-8", "48-31-8", "51-33-9"]], "wl": ["5", "15", "25", "35", "45", "55", "65", "75", "85", "95", "105", "115", "125", "135"], "wr": [["CB LỬA - PS VẬT LÝ - XT VẬT LÝ", 72.0, 99.0, 140.0, 196.0, 260.0, 339.0, 428.0, 534.0, 646.0, 772.0, 909.0, 1265.0, 1473.0, 1670.0], ["CB VẬT LÝ - PS BĂNG - XT ĐIỆN", 76.0, 104.0, 149.0, 202.0, 270.0, 349.0, 439.0, 546.0, 659.0, 786.0, 926.0, 1286.0, 1495.0, 1688.0], ["ST ĐỘC", 72.0, 99.0, 140.0, 196.0, 260.0, 339.0, 428.0, 534.0, 646.0, 772.0, 909.0, 1329.0, 1548.0, 1750.0], ["ST VẬT LÝ", 76.0, 104.0, 149.0, 202.0, 270.0, 349.0, 439.0, 546.0, 659.0, 786.0, 926.0, 1351.0, 1570.0, 1772.0]], "mult": [["Vũ Khí +1", 1.1], ["Vũ Khí +2", 1.2], ["Vũ Khí +3", 1.3], ["Vũ Khí +4", 1.4], ["Vũ Khí +5", 1.5], ["Vũ Khí +6", 1.6], ["Vũ Khí +7", 1.72], ["Vũ Khí +8", 1.84], ["Vũ Khí +9", 1.96], ["Vũ Khí +10", 2.08], ["Vũ Khí +11", 2.2], ["Vũ Khí +12", 2.35], ["Vũ Khí +13", 2.5], ["Vũ Khí +14", 2.65], ["Vũ Khí +15", 2.8]], "base": 733.0, "obs": {"8": 1348.0}, "gh": 380.0};
+const $=id=>document.getElementById(id);
+const fmt=n=>isFinite(n)?n.toLocaleString('en-US',{maximumFractionDigits:2}):'0';
+const names=['Bảng chỉ số MAX','Vũ khí','Tính sát thương','Tính vàng'];
+names.forEach((n,i)=>{const b=document.createElement('button');b.textContent=n;b.setAttribute('role','tab');b.onclick=()=>show(i);$('nav').appendChild(b)});
+function show(i){[...$('nav').children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));names.forEach((_,j)=>$('s'+j).classList.toggle('on',i==j))}
+// sheet 1
+const hl=-1;
+$('lv').innerHTML='<option value="-1">None</option>'+D.levels.map((l,i)=>`<option value="${i}">Level ${l}</option>`).join('');
+const on=new Set(),cs=new Set();
+$('gr').innerHTML='<option value="">None</option>'+[...new Set(D.rows.map(r=>r[0]))].map(g=>`<option>${g}</option>`).join('');
+function t0(){const k=+$('lv').value,g=$('gr').value;let h='<tr><th>Đồ</th><th>Loại</th>'+D.levels.map((l,i)=>`<th data-c="${i}" style="cursor:pointer" class="${i==k||cs.has(i)?'hl':''}">${l}</th>`).join('')+'</tr>',last='';
+D.rows.forEach((r,j)=>{const rh=(g&&r[0]==g)||on.has(j)?'hl':'';h+=`<tr data-j="${j}" class="${rh}" style="cursor:pointer"><td class="g">`+(r[0]==last?'':r[0])+'</td><td>'+r[1]+'</td>'+r.slice(2).map((v,i)=>`<td class="${i==k||cs.has(i)?'hl':''}">${v}</td>`).join('')+'</tr>';last=r[0]});$('t0').innerHTML=h}
+$('t0').onclick=e=>{const th=e.target.closest('th[data-c]');if(th){const c=+th.dataset.c;cs.has(c)?cs.delete(c):cs.add(c);t0();return}const tr=e.target.closest('tr[data-j]');if(!tr)return;const j=+tr.dataset.j;on.has(j)?on.delete(j):on.add(j);t0()};
+$('gr').onchange=t0;
+$('lv').onchange=t0;t0();
+// sheet 2
+const on1=new Set(),cs1=new Set();
+$('lv1').innerHTML='<option value="-1">None</option>'+D.wl.map((l,i)=>`<option value="${i}">Level ${l}</option>`).join('');
+$('gr1').innerHTML='<option value="-1">None</option>'+D.wr.map((r,i)=>`<option value="${i}">${r[0]}</option>`).join('');
+function t1(){const k=+$('lv1').value,g=+$('gr1').value;
+$('t1').innerHTML='<tr><th>Class</th>'+D.wl.map((l,i)=>`<th data-c="${i}" style="cursor:pointer" class="${i==k||cs1.has(i)?'hl':''}">${l}</th>`).join('')+'</tr>'+D.wr.map((r,j)=>`<tr data-j="${j}" class="${j==g||on1.has(j)?'hl':''}" style="cursor:pointer"><td class="g">${r[0]}</td>`+r.slice(1).map((v,i)=>`<td class="${i==k||cs1.has(i)?'hl':''}">${v}</td>`).join('')+'</tr>').join('')}
+$('t1').onclick=e=>{const th=e.target.closest('th[data-c]');if(th){const c=+th.dataset.c;cs1.has(c)?cs1.delete(c):cs1.add(c);t1();return}const tr=e.target.closest('tr[data-j]');if(!tr)return;const j=+tr.dataset.j;on1.has(j)?on1.delete(j):on1.add(j);t1()};
+$('lv1').onchange=$('gr1').onchange=t1;t1();
+// sheet 3
+$('base').value=D.base;
+$('t2').innerHTML='<tr><th>Cấp độ</th><th>Hệ số</th><th>Chỉ số</th><th>Đo được</th><th>Base</th></tr>'+D.mult.map((m,i)=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td id="c${i}"></td><td><input id="e${i}" type="number" step="any" value="${D.obs[i+1]||''}"></td><td id="d${i}"></td></tr>`).join('');
+function c2(){const b=parseFloat($('base').value);D.mult.forEach((m,i)=>{$('c'+i).textContent=isNaN(b)?'':fmt(b*m[1]);const e=parseFloat($('e'+i).value);$('d'+i).textContent=isNaN(e)?'':fmt(e/m[1])})}
+document.querySelectorAll('#s2 input').forEach(x=>x.oninput=c2);c2();
+// sheet 4
+$('h').value=D.gh;
+function c3(){const h=parseFloat($('h').value),a=parseFloat($('i1').value),b=parseFloat($('i2').value),o=h*a;
+$('o1').textContent=fmt(o);$('o2').textContent=fmt(o-o*0.05);
+$('o3').textContent=h?fmt(Math.ceil(((b+b*0.05)/h)/1000)*1000):'0'}
+['h','i1','i2'].forEach(x=>$(x).oninput=c3);c3();
+show(0);
+</script></body></html>
