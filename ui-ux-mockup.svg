@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960" role="img" aria-labelledby="title desc"> 
+ <title id="title">HSO dashboard UI/UX redesign mockup</title> 
+ <desc id="desc">Dark green desktop dashboard concept for HSO gear and weapon stats, with navigation, filters, a data table, and a utility panel.</desc> 
+ <defs> 
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"> 
+ <stop offset="0" stop-color="#101916"/> 
+ <stop offset="1" stop-color="#17231e"/> 
+ </linearGradient> 
+ <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"> 
+ <stop offset="0" stop-color="#83e2b5"/> 
+ <stop offset="1" stop-color="#42b984"/> 
+ </linearGradient> 
+ <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"> 
+ <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#050a08" flood-opacity=".22"/> 
+ </filter> 
+ <style> 
+ text{font-family:Inter,"Segoe UI",Arial,sans-serif} 
+ .muted{fill:#93a39b} 
+ .white{fill:#eff7f2} 
+ .small{font-size:12px} 
+ .label{font-size:13px;fill:#9eada5} 
+ .value{font-size:15px;font-weight:600;fill:#edf5f0} 
+ .stroke{stroke:#2b3b33;stroke-width:1} 
+ </style> 
+ </defs> 
+
+ <rect width="1440" height="960" fill="url(#bg)"/> 
+ <circle cx="1320" cy="30" r="250" fill="#164634" opacity=".15"/> 
+
+ <!-- Sidebar --> 
+ <rect x="0" y="0" width="248" height="960" fill="#111a16"/> 
+ <path d="M247 0v960" stroke="#293830"/> 
+ <rect x="24" y="24" width="42" height="42" rx="13" fill="url(#accent)"/> 
+ <path d="M37 47l8-13 8 13-8 11z" fill="#10231a"/> 
+ <text x="78" y="43" class="white" font-size="18" font-weight="750">HSO TOOLS</text> 
+ <text x="78" y="60" class="muted" font-size="11">GAME COMPANION</text> 
+
+ <text x="26" y="116" class="muted" font-size="10" font-weight="700" letter-spacing="1.6">WORKSPACE</text> 
+ <rect x="14" y="132" width="220" height="46" rx="12" fill="#20382c"/> 
+ <rect x="14" y="132" width="3" height="46" rx="2" fill="#6bd39f"/> 
+ <rect x="31" y="146" width="18" height="18" rx="5" fill="#2d4f3d"/> 
+ <path d="M36 151h8M36 155h8M36 159h5" stroke="#95e2b7" stroke-width="1.5" stroke-linecap="round"/> 
+ <text x="60" y="161" fill="#dff6e9" font-size="13" font-weight="650">Bảng chỉ số</text> 
+ <rect x="31" y="197" width="18" height="18" rx="5" fill="#202b25"/> 
+ <path d="M36 206l4-5 4 5v5h-8z" fill="none" stroke="#9eada5" stroke-width="1.3"/> 
+ <text x="60" y="211" class="muted" font-size="13">Vũ khí</text> 
+ <rect x="31" y="242" width="18" height="18" rx="5" fill="#202b25"/> 
+ <path d="M36 252h8M40 248v8" stroke="#9eada5" stroke-width="1.4" stroke-linecap="round"/> 
+ <text x="60" y="256" class="muted" font-size="13">Tính sát thương</text> 
+ <rect x="31" y="287" width="18" height="18" rx="5" fill="#202b25"/> 
+ <circle cx="40" cy="296" r="5" fill="none" stroke="#9eada5" stroke-width="1.3"/> 
+ <path d="M40 293v3l2 1" stroke="#9eada5" stroke-width="1.2" stroke-linecap="round"/> 
+ <text x="60" y="301" class="muted" font-size="13">Tính vàng</text> 
+
+ <text x="26" y="365" class="muted" font-size="10" font-weight="700" letter-spacing="1.6">QUICK ACCESS</text> 
+ <rect x="24" y="384" width="200" height="72" rx="13" fill="#18241e" class="stroke"/> 
+ <text x="40" y="407" class="muted" font-size="11">LEVEL ĐANG CHỌN</text> 
+ <text x="40" y="438" class="white" font-size="23" font-weight="700">105</text> 
+ <text x="87" y="436" fill="#7fe0ac" font-size="12">● MAX BUILD</text> 
+ <rect x="24" y="870" width="34" height="34" rx="11" fill="#202d26"/> 
+ <circle cx="41" cy="887" r="8" fill="none" stroke="#9cafa4" stroke-width="1.5"/> 
+ <path d="M41 879v3m0 10v3m-8-8h3m10 0h3m-13-6 2 2m6 6 2 2m0-10-2 2m-6 6-2 2" stroke="#9cafa4" stroke-width="1"/> 
+ <text x="70" y="891" class="muted" font-size="12">Giao diện</text> 
+ <text x="24" y="932" fill="#718078" font-size="10">HSO COMPANION • V1.0</text> 
+
+ <!-- Top bar --> 
+ <text x="282" y="43" class="muted" font-size="12">HSO TOOLS / WORKSPACE /</text> 
+ <text x="499" y="43" class="white" font-size="12" font-weight="600">BẢNG CHỈ SỐ</text> 
+ <rect x="1122" y="22" width="226" height="42" rx="12" fill="#17221c" class="stroke"/> 
+ <circle cx="1145" cy="43" r="6" fill="#70d39f"/> 
+ <text x="1160" y="47" class="muted" font-size="12">Tất cả dữ liệu đã sẵn sàng</text> 
+
+ <!-- Heading --> 
+ <text x="282" y="110" class="white" font-size="30" font-weight="750">Bảng chỉ số trang bị</text> 
+ <text x="282" y="139" class="muted" font-size="14">Tra cứu nhanh chỉ số theo cấp độ và loại trang bị.</text> 
+ <rect x="1213" y="91" width="135" height="42" rx="12" fill="#1e3026" class="stroke"/> 
+ <path d="M1232 105v14m-5-5 5 5 5-5" fill="none" stroke="#82ddb0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/> 
+ <text x="1248" y="117" fill="#bcebd0" font-size="12" font-weight="600">Xuất bảng</text> 
+
+ <!-- Stats cards --> 
+ <g filter="url(#shadow)"> 
+ <rect x="282" y="170" width="330" height="106" rx="16" fill="#1a2720" class="stroke"/> 
+ <rect x="630" y="170" width="330" height="106" rx="16" fill="#1a2720" class="stroke"/> 
+ <rect x="978" y="170" width="370" height="106" rx="16" fill="#1a2720" class="stroke"/> 
+ </g> 
+ <rect x="302" y="190" width="36" height="36" rx="11" fill="#234533"/> 
+ <path d="M312 208h16m-8-8v16" stroke="#8be2b0" stroke-width="1.7" stroke-linecap="round"/> 
+ <text x="352" y="205" class="label">MỨC TRANG BỊ</text> 
+ <text x="352" y="239" class="white" font-size="23" font-weight="700">Cấp 105</text> 
+ <text x="302" y="259" fill="#72d79f" font-size="11">● Đang lọc theo cấp độ</text> 
+ <rect x="650" y="190" width="36" height="36" rx="11" fill="#233b38"/> 
+ <path d="M660 208h16m-13-5h10m-8 10h6" stroke="#8bd8cf" stroke-width="1.6" stroke-linecap="round"/> 
+ <text x="700" y="205" class="label">NHÓM TRANG BỊ</text> 
+ <text x="700" y="239" class="white" font-size="23" font-weight="700">Tất cả đồ</text> 
+ <text x="700" y="259" class="muted" font-size="11">16 dòng dữ liệu</text> 
+ <rect x="998" y="190" width="36" height="36" rx="11" fill="#363322"/> 
+ <path d="M1009 208l5 5 9-11" fill="none" stroke="#e8d78c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/> 
+ <text x="1048" y="205" class="label">TRA CỨU</text> 
+ <text x="1048" y="239" class="white" font-size="23" font-weight="700">Tức thì</text> 
+ <text x="1048" y="259" class="muted" font-size="11">Không cần tải lại trang</text> 
+
+ <!-- Main table card --> 
+ <rect x="282" y="300" width="1066" height="598" rx="17" fill="#19241e" class="stroke" filter="url(#shadow)"/> 
+ <text x="308" y="338" class="white" font-size="17" font-weight="700">Chỉ số theo cấp độ</text> 
+ <text x="308" y="359" class="muted" font-size="12">Chọn nhóm hoặc cấp để tập trung vào thông tin cần xem.</text> 
+ <rect x="876" y="318" width="190" height="42" rx="10" fill="#131c17" class="stroke"/> 
+ <text x="892" y="335" fill="#819087" font-size="10">NHÓM TRANG BỊ</text> 
+ <text x="892" y="351" class="white" font-size="12">Tất cả nhóm</text> 
+ <path d="M1044 335l5 5 5-5" fill="none" stroke="#8b9b91" stroke-width="1.4"/> 
+ <rect x="1078" y="318" width="151" height="42" rx="10" fill="#131c17" class="stroke"/> 
+ <text x="1094" y="335" fill="#819087" font-size="10">CẤP ĐỘ</text> 
+ <text x="1094" y="351" class="white" font-size="12">Cấp 105</text> 
+ <path d="M1207 335l5 5 5-5" fill="none" stroke="#8b9b91" stroke-width="1.4"/> 
+ <rect x="1240" y="318" width="82" height="42" rx="10" fill="#22382c" stroke="#355542"/> 
+ <path d="M1258 339h12m-6-6v12" stroke="#8fe1b1" stroke-width="1.5" stroke-linecap="round"/> 
+ <text x="1276" y="343" fill="#bcebd0" font-size="12" font-weight="600">Lọc</text> 
+
+ <!-- Highlight chips --> 
+ <text x="308" y="402" class="label">ĐANG SO SÁNH</text> 
+ <rect x="417" y="382" width="88" height="28" rx="14" fill="#214331"/> 
+ <text x="434" y="400" fill="#bcebd0" font-size="11" font-weight="600">Cấp 105 ×</text> 
+ <rect x="514" y="382" width="112" height="28" rx="14" fill="#202b25" stroke="#35443b"/> 
+ <text x="531" y="400" fill="#bdc9c2" font-size="11">ÁO ×</text> 
+ <text x="1290" y="400" class="muted" font-size="11" text-anchor="end">Bấm vào cấp để tô sáng</text> 
+
+ <!-- Table header --> 
+ <rect x="302" y="425" width="1026" height="48" rx="9" fill="#22332a"/> 
+ <text x="320" y="455" fill="#aebdb4" font-size="11" font-weight="700">TRANG BỊ</text> 
+ <text x="492" y="455" fill="#aebdb4" font-size="11" font-weight="700">LOẠI</text> 
+ <text x="628" y="455" fill="#aebdb4" font-size="11" font-weight="700">CẤP 5</text> 
+ <text x="738" y="455" fill="#aebdb4" font-size="11" font-weight="700">CẤP 25</text> 
+ <text x="850" y="455" fill="#aebdb4" font-size="11" font-weight="700">CẤP 55</text> 
+ <text x="962" y="455" fill="#aebdb4" font-size="11" font-weight="700">CẤP 85</text> 
+ <rect x="1069" y="425" width="112" height="48" fill="#31553e"/> 
+ <text x="1087" y="455" fill="#a9edc4" font-size="11" font-weight="700">CẤP 105</text> 
+ <text x="1201" y="455" fill="#aebdb4" font-size="11" font-weight="700">CẤP 125</text> 
+
+ <!-- Rows --> 
+ <g> 
+ <rect x="302" y="474" width="1026" height="54" fill="#1c2921"/> 
+ <rect x="1069" y="474" width="112" height="54" fill="#263d2d"/> 
+ <rect x="302" y="529" width="1026" height="54" fill="#19241e"/> 
+ <rect x="1069" y="529" width="112" height="54" fill="#263d2d"/> 
+ <rect x="302" y="584" width="1026" height="54" fill="#1c2921"/> 
+ <rect x="1069" y="584" width="112" height="54" fill="#263d2d"/> 
+ <rect x="302" y="639" width="1026" height="54" fill="#19241e"/> 
+ <rect x="1069" y="639" width="112" height="54" fill="#263d2d"/> 
+ <rect x="302" y="694" width="1026" height="54" fill="#1c2921"/> 
+ <rect x="1069" y="694" width="112" height="54" fill="#263d2d"/> 
+ <path d="M302 528h1026M302 583h1026M302 638h1026M302 693h1026M302 748h1026" class="stroke"/> 
+ </g> 
+ <text x="320" y="507" class="value">MŨ</text><text x="492" y="507" class="muted" font-size="12">Vật lý / PS - XT</text><text x="628" y="507" class="muted" font-size="12">12-8-2</text><text x="738" y="507" class="muted" font-size="12">18-12-2</text><text x="850" y="507" class="muted" font-size="12">28-18-3</text><text x="962" y="507" class="muted" font-size="12">38-24-4</text><text x="1087" y="507" fill="#a9edc4" font-size="12" font-weight="700">44-28-5</text><text x="1201" y="507" class="muted" font-size="12">51-32-5.6</text> 
+ <text x="320" y="562" class="value">MŨ</text><text x="492" y="562" class="muted" font-size="12">CB - ST</text><text x="628" y="562" class="muted" font-size="12">11-7-2</text><text x="738" y="562" class="muted" font-size="12">16-11-2</text><text x="850" y="562" class="muted" font-size="12">26-17-3</text><text x="962" y="562" class="muted" font-size="12">36-23-4</text><text x="1087" y="562" fill="#a9edc4" font-size="12" font-weight="700">42-27-5</text><text x="1201" y="562" class="muted" font-size="12">48-31-5.6</text> 
+ <text x="320" y="617" class="value">ÁO</text><text x="492" y="617" class="muted" font-size="12">PS - XT</text><text x="628" y="617" class="muted" font-size="12">3-7-10</text><text x="738" y="617" class="muted" font-size="12">7-8-14</text><text x="850" y="617" class="muted" font-size="12">14-10-21</text><text x="962" y="617" class="muted" font-size="12">21-11-27</text><text x="1087" y="617" fill="#a9edc4" font-size="12" font-weight="700">28-12-32</text><text x="1201" y="617" class="muted" font-size="12">33-13-33</text> 
+ <text x="320" y="672" class="value">ÁO</text><text x="492" y="672" class="muted" font-size="12">CB - ST</text><text x="628" y="672" class="muted" font-size="12">3-6-10</text><text x="738" y="672" class="muted" font-size="12">7-7-13</text><text x="850" y="672" class="muted" font-size="12">14-9-20</text><text x="962" y="672" class="muted" font-size="12">21-10-25</text><text x="1087" y="672" fill="#a9edc4" font-size="12" font-weight="700">28-11-30</text><text x="1201" y="672" class="muted" font-size="12">35-12-33</text> 
+ <text x="320" y="727" class="value">VÁY</text><text x="492" y="727" class="muted" font-size="12">PS - XT</text><text x="628" y="727" class="muted" font-size="12">5-18-2</text><text x="738" y="727" class="muted" font-size="12">6-23-3</text><text x="850" y="727" class="muted" font-size="12">8-32-5</text><text x="962" y="727" class="muted" font-size="12">9-39-6</text><text x="1087" y="727" fill="#a9edc4" font-size="12" font-weight="700">10-46-7</text><text x="1201" y="727" class="muted" font-size="12">11-51-8</text> 
+
+ <text x="310" y="790" class="muted" font-size="12">Hiển thị 5 trên 16 dòng</text> 
+ <rect x="1175" y="767" width="35" height="34" rx="9" fill="#21352a"/> 
+ <path d="M1196 778l-6 6 6 6" fill="none" stroke="#aadfbe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> 
+ <rect x="1218" y="767" width="35" height="34" rx="9" fill="#21352a"/> 
+ <path d="M1230 778l6 6-6 6" fill="none" stroke="#aadfbe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> 
+ <text x="310" y="852" fill="#83958b" font-size="11">Gợi ý: chọn một dòng để giữ nổi bật trong khi đối chiếu chỉ số.</text> 
+ <rect x="1117" y="824" width="211" height="44" rx="12" fill="#1e3829" stroke="#31543d"/> 
+ <circle cx="1140" cy="846" r="8" fill="#3e7d56"/> 
+ <path d="M1136 846l3 3 5-6" fill="none" stroke="#d8f4e3" stroke-width="1.5" stroke-linecap="round"/> 
+ <text x="1156" y="850" fill="#c4ebd1" font-size="12" font-weight="600">Bảng chỉ số đã cập nhật</text> 
+</svg> 
